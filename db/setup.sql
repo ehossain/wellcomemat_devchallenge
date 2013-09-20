@@ -1,0 +1,16 @@
+USE project_management;
+
+CREATE TABLE projects ( 
+id INT NOT NULL AUTO_INCREMENT, 
+name VARCHAR(255),
+PRIMARY KEY (id) 
+);
+
+CREATE TABLE tasks ( 
+id INT NOT NULL AUTO_INCREMENT, 
+project_id INT UNSIGNED NOT NULL,
+name VARCHAR(255),
+due_at DATETIME NOT NULL, 
+completed TINYINT UNSIGNED, 
+PRIMARY KEY (id) 
+);
