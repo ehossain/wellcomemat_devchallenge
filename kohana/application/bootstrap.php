@@ -103,7 +103,7 @@ if (isset($_SERVER['KOHANA_ENV']))
  * - boolean  expose      set the X-Powered-By header                        FALSE
  */
 Kohana::init(array(
-	'base_url'   => 'ehossain/wellcomemat_devchallenge/kohana/',
+	'base_url'   => '/kohana/',
 ));
 //EH--Make sure base_url is updated for testing and live file path. Add the entire path after "http" and "www", port included.
 Cookie::$salt = 'foobar';
