@@ -6,27 +6,20 @@
 
 <?php
 
-foreach($tasks as $task){
-	
-	foreach($projects as $project){
-		if($project->id == $task->project_id){
-			
+foreach($tasks_grouped as $task){
+
 ?>
-			<tr>
-			
-			<td><?php echo $project->id ?></td>
-			<td><?php echo $task->project_id ?></td>
-			<td><?php echo $project->name ?></td>
-			<td><?php echo $task->name ?></td>
-			<td><?php echo $task->due_at ?></td>
-			<td><?php echo $task->completed ?></td>
-			
-			</tr>
-<?php
-			
-		}
+		<tr>
 		
-	}
+		<td><?php echo $task->id ?></td>
+		<td><?php echo $task->project_id ?></td>
+		<td><?php echo $task->name ?></td>
+		<td><?php echo $task->tasks_name ?></td>
+		<td><?php echo $task->due_at ?></td>
+		<td><?php echo $task->completed ?></td>
+		
+		</tr>
+<?php
 	
 }
 

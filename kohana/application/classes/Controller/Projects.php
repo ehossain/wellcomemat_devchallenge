@@ -3,15 +3,22 @@
 class Controller_Projects extends Controller {
 
 	public function action_index(){
-		$tasks = ORM::factory('tasks')->find_all();
-		$projects = ORM::factory('projects')->find_all();
+		//$tasks = ORM::factory('tasks')->find_all();
+		//$projects = ORM::factory('projects')->find_all();
+		
+		$tasks = DB::select('project_id','due_at','completed',array('name','tasks_name'))
+		->from('tasks')
+		->group_by('id');
+		
+		$tasks_grouped = ORM::factory('projects')
+		->select('*')
+		->join(array($tasks, 'tasks'), 'LEFT')
+		->on('projects.id', '=', 'tasks.project_id')
+		->find_all();
+		
 		$view = VIEW::factory('projects/index')->bind('tasks',$tasks)->bind('projects',$projects);
-		/*$this->response->body('<table cellpadding="2" cellspacing="0" border="1">
-		<tr><th>Project ID</th><th>Project Name</th><th>Project Task</th><th>Project Due Date</th><th>Project Completed?</th></tr>
-		<tr><td>'.$tasks[7]->id.'</td><td>'.$projects[7]->name.'</td><td>'.$tasks[7]->name.'</td><td>'.$tasks[7]->due_at.'</td><td>'.$tasks[7]->completed.'</td></tr>
-		</table>');*/
-		$this->response->body($view);
-		//var_dump($tasks);
+		$view_grouped = VIEW::factory('projects/index')->bind('tasks_grouped',$tasks_grouped);
+		$this->response->body($view_grouped);
 	}
 	
 
