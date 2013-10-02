@@ -1,10 +1,12 @@
 <h4>Create New Project:</h4>
 
-<form id="add_new_project" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+<!--<form id="add_new_project" action="<?php //echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">-->
+
+<?php echo Form::open(); ?>
 
 <table cellpadding="2" cellspacing="0" border="1">
 
-<tr><th><label for="project_name">Project Name</label></th><th><label for="project_task">Project Task</label></th><th><label for="task_due_date">Task Due Date</label></th></tr>
+<tr><th><?php echo Form::label('project_name','Project Name'); ?></th><th><?php echo Form::label('project_task','Project Task'); ?></th><th><?php echo Form::label('task_due_date','Task Due Date (YYYY-MM-DD)'); ?></th></tr>
 
 <tr>
 
@@ -23,6 +25,8 @@
 </tr>
 
 </table>
+
+<?php echo Form::close(); ?><!--</form>-->
 
 <?php
 
