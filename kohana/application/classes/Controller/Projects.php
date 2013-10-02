@@ -16,13 +16,34 @@ class Controller_Projects extends Controller {
 		->on('projects.id', '=', 'tasks.project_id')
 		->find_all();
 		
+		$project_new = ORM::factory('projects');
+		$tasks_new = ORM::factory('tasks');
+		
 		/*$tasks_numbered = ORM::factory('tasks')
 		->from('tasks')
 		->find_all();*/
 		
+		if ($_POST){
+			$project_new->name = $_POST['project_name'];
+			$project_new->save();
+			if($project_new->loaded()){
+				//echo '<p>PROJECTS last query: '.$project_new->last_query().'</p>';
+				$tasks_new->project_id = $project_new->id;
+				$tasks_new->name = $_POST['project_task'];
+				$tasks_new->due_at = $_POST['task_due_date'];
+				$tasks_new->completed = 0;
+				$tasks_new->save();
+			}
+			if($tasks_new->loaded()){
+				//echo '<p>TASKS last query: '.$tasks_new->last_query().'</p>';
+			}
+			$this->redirect('projects/index');
+		}
+		
 		//$view = VIEW::factory('projects/index')->bind('tasks',$tasks)->bind('projects',$projects);
 		$view_grouped = VIEW::factory('projects/index')->bind('tasks_grouped',$tasks_grouped);
 		$this->response->body($view_grouped);
+		//echo '<p>BASE URL: '.URL::base().'</p>';
 	}
 
 }
