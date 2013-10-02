@@ -24,6 +24,5 @@ class Controller_Projects extends Controller {
 		$view_grouped = VIEW::factory('projects/index')->bind('tasks_grouped',$tasks_grouped);
 		$this->response->body($view_grouped);
 	}
-	
 
 }

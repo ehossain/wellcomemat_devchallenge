@@ -1,8 +1,6 @@
 <h4>Create New Project:</h4>
 
-<!--<form id="add_new_project" action="<?php //echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">-->
-
-<?php echo Form::open(); ?>
+<?php echo Form::open('', array('id' => 'add_new_project', 'action' => htmlentities($_SERVER['PHP_SELF']), 'method' => 'post')); ?><!--begin form-->
 
 <table cellpadding="2" cellspacing="0" border="1">
 
@@ -10,23 +8,23 @@
 
 <tr>
 
-<td><input id="project_name" name="project_name" type="text" value="<?php (!empty($_POST['project_name'])) ? $_POST['project_name'] : ''; ?>" maxlength="" size="50"></td>
+<td><?php echo Form::input('project_name',(!empty($_POST['project_name']) ? $_POST['project_name'] : ''), array('id' => 'project_name','type' => 'text','size' => '50','maxlength' => '')); ?></td>
 
-<td><input id="project_task" name="project_task" type="text" value="<?php (!empty($_POST['project_task'])) ? $_POST['project_task'] : ''; ?>" maxlength="" size="50"></td>
+<td><?php echo Form::input('project_task',(!empty($_POST['project_task']) ? $_POST['project_task'] : ''), array('id' => 'project_task','type' => 'text','size' => '50','maxlength' => '')); ?></td>
 
-<td><input id="task_due_date" name="task_due_date" type="text" value="<?php (!empty($_POST['task_due_date'])) ? $_POST['task_due_date'] : ''; ?>" maxlength="" size="50"></td>
+<td><?php echo Form::input('task_due_date',(!empty($_POST['task_due_date']) ? $_POST['task_due_date'] : ''), array('id' => 'task_due_date','type' => 'text','size' => '50','maxlength' => '')); ?></td>
 
 </tr>
 
 <tr>
 <td>&nbsp;</td>
-<td><input id="submit" name="submit" type="submit" value="Submit"></td>
+<td><?php echo Form::submit('submit','Submit', array('id' => 'submit')); ?></td>
 <td>&nbsp;</td>
 </tr>
 
 </table>
 
-<?php echo Form::close(); ?><!--</form>-->
+<?php echo Form::close(); ?><!--end form-->
 
 <?php
 
