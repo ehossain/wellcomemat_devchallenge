@@ -16,7 +16,11 @@ class Controller_Projects extends Controller {
 		->on('projects.id', '=', 'tasks.project_id')
 		->find_all();
 		
-		$view = VIEW::factory('projects/index')->bind('tasks',$tasks)->bind('projects',$projects);
+		/*$tasks_numbered = ORM::factory('tasks')
+		->from('tasks')
+		->find_all();*/
+		
+		//$view = VIEW::factory('projects/index')->bind('tasks',$tasks)->bind('projects',$projects);
 		$view_grouped = VIEW::factory('projects/index')->bind('tasks_grouped',$tasks_grouped);
 		$this->response->body($view_grouped);
 	}
